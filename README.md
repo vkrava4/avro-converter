@@ -8,7 +8,7 @@ Avro Converter created for supporting data conversion and serialization based on
 Avro is an excellent choice due to message compression mechanisms and Schema Registry support especially for whose who are using Event-Driven architecture with Apache Kafka as an event distribution platform.
 
 
-###Avro Converter will help you to:
+### Avro Converter will help you to:
 
  * Convert Avro object into most popular data formats such as JSON, XML and CSV
  * Apply easy integration with Spring MVC request/response message converters.
