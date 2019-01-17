@@ -1,0 +1,14 @@
+[
+  {
+     "type": "record",
+     "namespace": "com.vladkrava.converter.test.domain",
+     "name": "DummyObject",
+     "doc": "Dummy Object",
+     "fields": [
+       { "name": "testString1", "type": "string"},
+       { "name": "testString2", "type": "string", "default": "TEST_STRING_2"},
+       { "name": "testArray", "type": {"type": "array", "items": "string"}},
+       { "name": "testInt", "type": "int"}
+     ]
+   }
+]

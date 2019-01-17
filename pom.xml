@@ -30,6 +30,7 @@
         <junit.version>4.12</junit.version>
         <avro.version>1.8.2</avro.version>
         <json.version>20180813</json.version>
+        <commons.oi.version>2.4</commons.oi.version>
         <spring.mvc.version>3.0.2.RELEASE</spring.mvc.version>
 
         <maven.compiler.version>3.7.0</maven.compiler.version>
@@ -59,6 +60,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.oi.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
