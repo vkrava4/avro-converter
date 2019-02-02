@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  * @see DataSerializationException - checked exception which may occur during the execution
  * @since 0.1-SNAPSHOT
  */
-public abstract class AvroSerializer<T extends SpecificRecord> implements Serializer<T> {
+public class AvroSerializer<T extends SpecificRecord> implements Serializer<T> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AvroSerializer.class.getName());
 

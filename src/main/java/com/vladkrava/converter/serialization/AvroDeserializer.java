@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  * @author Vlad Krava - vkrava4@gmail.com
  * @since 0.1-SNAPSHOT
  */
-public abstract class AvroDeserializer<T extends SpecificRecordBase> implements Deserializer<T> {
+public class AvroDeserializer<T extends SpecificRecordBase> implements Deserializer<T> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AvroSerializer.class.getName());
 
