@@ -40,7 +40,7 @@ public abstract class AvroSerializer<T extends SpecificRecord> implements Serial
 
         if (data != null) {
             if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug("Input data = {} : {}", data.getClass().getName(), data);
+                LOGGER.debug("Avro object = {} : {}", data.getSchema().getFullName(), data);
             }
 
             try (final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {

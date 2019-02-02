@@ -20,14 +20,14 @@ import com.vladkrava.converter.test.domain.DummyObject;
  */
 public class AvroToJsonConverterTest {
 
-    private static final String EXPECTED_RECORD1_FILE_NAME = "expected-test-record1.json";
+    private static final String EXPECTED_RECORD1_FILE_NAME = "json/expected-test-record1.json";
 
-    private AvroToJsonConverter avroToJsonConverter;
+    private AvroToJsonConverter<DummyObject> avroToJson;
     private DummyObject testDummyObject;
 
     @Before
     public void setup() {
-        avroToJsonConverter = new AvroToJsonConverter();
+        avroToJson = new AvroToJsonConverter<>();
         testDummyObject = DummyObject.newBuilder()
                 .setTestString1("TEST_STRING")
                 .setTestInt(1)
@@ -41,11 +41,11 @@ public class AvroToJsonConverterTest {
         final String expectedJson = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
                 .getResourceAsStream(EXPECTED_RECORD1_FILE_NAME)), "UTF-8");
 
-        assertEquals(expectedJson, this.avroToJsonConverter.convert(this.testDummyObject));
+        assertEquals(expectedJson, this.avroToJson.convert(this.testDummyObject));
     }
 
     @Test
     public void convertNullToJsonStringTest() throws DataSerializationException {
-        assertNull(this.avroToJsonConverter.convert(null));
+        assertNull(this.avroToJson.convert(null));
     }
 }

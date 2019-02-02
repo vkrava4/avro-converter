@@ -9,7 +9,7 @@ import com.vladkrava.converter.serialization.DataSerializationException;
  * @see DataSerializationException
  * @since 0.1-SNAPSHOT
  */
-public interface Converter<T, E> {
+public interface SourceConverter<T, E> {
 
     /**
      * Data converting specification
