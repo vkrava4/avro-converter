@@ -26,7 +26,7 @@ final String jsonString = new AvroToJsonConverter<DummyObject>().convert(YOUR_GE
 final String xmlString = new AvroToXmlConverter<DummyObject>().convert(YOUR_GENERATED_AVRO_OBJECT);
  ```
  
- #### JSON to AVRO
+ #### JSON to Avro
  ```java
  final DummyObject dummyObject = new JsonToAvroConverter<DummyObject>().convert(YOUR_JSON_STRING, DummyObject.class);
   ```
