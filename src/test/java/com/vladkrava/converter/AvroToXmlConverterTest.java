@@ -20,14 +20,14 @@ import com.vladkrava.converter.test.domain.DummyObject;
  */
 public class AvroToXmlConverterTest {
 
-    private static final String EXPECTED_RECORD1_FILE_NAME = "expected-test-record1.xml";
+    private static final String EXPECTED_RECORD1_FILE_NAME = "xml/expected-test-record1.xml";
 
-    private AvroToXmlConverter avroToXmlConverter;
+    private AvroToXmlConverter<DummyObject> avroToXml;
     private DummyObject testDummyObject;
 
     @Before
     public void setup() {
-        avroToXmlConverter = new AvroToXmlConverter();
+        avroToXml = new AvroToXmlConverter<>();
         testDummyObject = DummyObject.newBuilder()
                 .setTestString1("TEST_STRING")
                 .setTestInt(1)
@@ -42,11 +42,11 @@ public class AvroToXmlConverterTest {
         final String expectedXml = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
                 .getResourceAsStream(EXPECTED_RECORD1_FILE_NAME)), "UTF-8");
 
-        assertEquals(expectedXml, this.avroToXmlConverter.convert(this.testDummyObject));
+        assertEquals(expectedXml, this.avroToXml.convert(this.testDummyObject));
     }
 
     @Test
     public void convertNullToXmlStringTest() throws DataSerializationException {
-        assertNull(this.avroToXmlConverter.convert(null));
+        assertNull(this.avroToXml.convert(null));
     }
 }

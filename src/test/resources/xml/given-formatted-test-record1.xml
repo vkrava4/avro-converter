@@ -1,0 +1,8 @@
+<DummyObject>
+    <testArray>1</testArray>
+    <testArray>2</testArray>
+    <testArray>3</testArray>
+    <testInt>1</testInt>
+    <testString1>TEST_STRING</testString1>
+    <testString2>TEST_STRING_2</testString2>
+</DummyObject>
