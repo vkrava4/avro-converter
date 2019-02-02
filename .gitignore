@@ -1,0 +1,6 @@
+# Intellij Idea configuration
+.idea/
+*.iml
+
+# Generated sources
+target/
