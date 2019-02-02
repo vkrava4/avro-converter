@@ -36,19 +36,16 @@ public RestTemplate restTemplate(final RestTemplateBuilder builder) {
 ```
 
 
-#### Manual Avro to JSON 
+#### Manual Operations 
 ```java
+// Avro to JSON String
 final String jsonString = new AvroToJsonConverter<DummyObject>().convert(dummyObject);
-```
 
- 
-#### Manual Avro to XML
-```java
+// Avro to XML String
 final String xmlString = new AvroToXmlConverter<DummyObject>().convert(dummyObject);
-```
 
- 
-#### Manual JSON to Avro
-```java
+// JSON String to Avro
 final DummyObject dummyObject = new JsonToAvroConverter<DummyObject>().convert(jsonString, DummyObject.class);
+
+// XML String to Avro - IN PROGRESS (0.2-SNAPSHOT)
 ```
