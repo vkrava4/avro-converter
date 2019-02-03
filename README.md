@@ -15,6 +15,16 @@ Avro is an excellent choice due to message compression mechanisms and Schema Reg
  * Reuse Avro object from the existing Event-Based systems for defining RESTful interface
 
 
+### Maven dependency
+```xml
+<dependency>
+  <groupId>com.vladkrava</groupId>
+  <artifactId>avro-converter</artifactId>
+  <version>0.1-SNAPSHOT</version>
+</dependency>
+```
+
+
 #### Hands-On: Avro Converter integration with Spring MVC
 ```java
 // Spring Web MVC configuration
