@@ -6,16 +6,27 @@
 
     <groupId>com.vladkrava</groupId>
     <artifactId>avro-converter</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
     <name>${project.artifactId} - ${project.version}</name>
     <packaging>jar</packaging>
 
-    <description>Enables conversion of Apache Avro object into popular data formats: JSON, XML and CSV</description>
+    <description>Enables conversion of Apache Avro object into popular data formats: JSON, XML, etc</description>
     <url>https://gitlab.com/vkrava4/avro-converter</url>
     <inceptionYear>2019</inceptionYear>
 
+    <developers>
+        <developer>
+            <name>Vlad Krava</name>
+            <email>vkrava4@gmail.com</email>
+            <organization>VladKrava</organization>
+            <organizationUrl>vladkrava.com</organizationUrl>
+        </developer>
+    </developers>
+
     <scm>
-        <url>https://gitlab.com/vkrava4/avro-converter.git</url>
+        <connection>scm:git:git://gitlab.com/vkrava4/avro-converter.git</connection>
+        <developerConnection>scm:git:ssh://gitlab.com/vkrava4/avro-converter.git</developerConnection>
+        <url>https://gitlab.com/vkrava4/avro-converter/tree/release/src</url>
     </scm>
 
     <licenses>
@@ -38,6 +49,10 @@
         <maven.compiler.version>3.7.0</maven.compiler.version>
         <source.jdk.version>1.8</source.jdk.version>
         <target.jdk.version>1.8</target.jdk.version>
+        <nexus.staging.version>1.6.7</nexus.staging.version>
+        <maven.source.version>2.2.1</maven.source.version>
+        <maven.javadoc.version>2.9.1</maven.javadoc.version>
+        <maven.gpg.version>1.5</maven.gpg.version>
     </properties>
 
     <dependencies>
@@ -72,6 +87,17 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -104,6 +130,60 @@
                             <enableDecimalLogicalType>true</enableDecimalLogicalType>
                             <fieldVisibility>private</fieldVisibility>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus.staging.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven.source.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven.gpg.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
