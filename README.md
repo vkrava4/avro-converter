@@ -1,10 +1,10 @@
 # Avro Converter
 
-Avro Converter enables conversion of Apache Avro object into popular data formats: JSON, XML and CSV.
+Avro Converter enables conversion of Apache Avro object into popular data formats: JSON, XML etc.
 
 
 ### General Info
-Avro Converter created for supporting data conversion and serialization based on Apache Avro technology.
+Avro Converter is created for supporting data conversion and serialization based on Apache Avro technology.
 Avro is an excellent choice due to message compression mechanisms and Schema Registry support especially for whose who are using Event-Driven architecture with Apache Kafka as an event distribution platform.
 
 
@@ -15,9 +15,7 @@ Avro is an excellent choice due to message compression mechanisms and Schema Reg
  * Reuse Avro object from the existing Event-Based systems for defining RESTful interface
 
 
-### Examples
-
-#### Enable AvroToJsonHttpMessageConverter for Spring MVC
+#### Hands-On: Avro Converter integration with Spring MVC
 ```java
 // Spring Web MVC configuration
 
@@ -36,7 +34,7 @@ public RestTemplate restTemplate(final RestTemplateBuilder builder) {
 ```
 
 
-#### Manual Operations 
+#### Hands-On: Avro Converter manual operations 
 ```java
 // Avro to JSON String
 final String jsonString = new AvroToJsonConverter<DummyObject>().convert(dummyObject);
