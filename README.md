@@ -20,7 +20,7 @@ Avro is an excellent choice due to message compression mechanisms and Schema Reg
 <dependency>
   <groupId>com.vladkrava</groupId>
   <artifactId>avro-converter</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>0.1</version>
 </dependency>
 ```
 
