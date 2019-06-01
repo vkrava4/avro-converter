@@ -1,0 +1,23 @@
+[
+  {
+     "type": "record",
+     "namespace": "com.vladkrava.converter.test.domain",
+     "name": "DummyArrays",
+     "doc": "Dummy Object with multi leveled array structures",
+     "fields": [
+        {"name": "testArrayLevel1", "type":
+           {"type": "array", "items":
+              {"type": "array", "items":
+                 {"type": "array", "items": "string"}
+              }
+           }
+        },
+
+        {"name": "testArrayMap", "type":
+           {"type": "array", "items":
+              {"type": "map", "values": "long"}
+           }
+        }
+     ]
+  }
+]
