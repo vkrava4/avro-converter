@@ -1,0 +1,1 @@
+<DummyObjectPrimitives><testBoolean>true</testBoolean><testString>TEST</testString><testInt>1</testInt><testBytes>TEST_BYTES</testBytes><testFloat>3.0</testFloat><testDouble>2.0</testDouble><testLong>4</testLong></DummyObjectPrimitives>

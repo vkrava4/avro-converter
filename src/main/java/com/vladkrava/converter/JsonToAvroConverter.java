@@ -1,5 +1,6 @@
 package com.vladkrava.converter;
 
+import org.apache.avro.AvroTypeException;
 import org.apache.avro.specific.SpecificRecordBase;
 
 import com.vladkrava.converter.serialization.AvroDeserializer;
@@ -26,6 +27,10 @@ public class JsonToAvroConverter<T extends SpecificRecordBase> extends AvroDeser
      */
     @Override
     public T convert(final String s, final Class<T> aClass) throws DataSerializationException {
-        return s == null ? null : deserialize(s.getBytes(), aClass);
+        try {
+            return s == null ? null : deserialize(s.getBytes(), aClass);
+        } catch (AvroTypeException e) {
+            throw new DataSerializationException("An issue occurred with object deserialization", e);
+        }
     }
 }
