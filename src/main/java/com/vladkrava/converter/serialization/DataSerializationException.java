@@ -13,9 +13,16 @@ public class DataSerializationException extends Exception {
 
     /**
      * @param message text description related to the possible cause of an issue
-     * @param cause info related to the cause saved for later retrieval
+     * @param cause   info related to the cause saved for later retrieval
      */
-    DataSerializationException(final String message, final Throwable cause) {
+    public DataSerializationException(final String message, final Throwable cause) {
         super(message, cause);
+    }
+
+    /**
+     * @param message text description related to the possible cause of an issue
+     */
+    public DataSerializationException(final String message) {
+        super(message);
     }
 }

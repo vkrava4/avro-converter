@@ -1,0 +1,28 @@
+{
+  "testPrimitives": {
+    "testString": "TEST_STRING_PRIMITIVES",
+    "testInt": 1,
+    "testLong": 4,
+    "testFloat": 3.0,
+    "testDouble": 2.0,
+    "testBoolean": true,
+    "testBytes": "TEST_BYTES"
+  },
+  "testString": "TEST_STRING_1",
+  "testEnum": "YES",
+  "testUnion": null,
+  "testMap": {
+    "TEST_MAP_VALUE1": 99.99,
+    "TEST_MAP_VALUE2": 299.99
+  },
+  "testList": [
+    {
+      "testName": "TEST_STRING_INNER_CLASS_1",
+      "testId": 10
+    },
+    {
+      "testName": "TEST_STRING_INNER_CLASS_2",
+      "testId": 20
+    }
+  ]
+}
