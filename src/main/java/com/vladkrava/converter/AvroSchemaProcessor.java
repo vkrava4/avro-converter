@@ -23,7 +23,7 @@ import org.json.JSONObject;
  * @see JSONObject
  * @since 0.2-SNAPSHOT
  */
-final class AvroSchemaProcessor {
+public final class AvroSchemaProcessor {
 
 
     /**
@@ -41,7 +41,7 @@ final class AvroSchemaProcessor {
      * @param objectKey    a key of JSON node
      * @return {@code Object} processed JSON node value wrapped into corresponding to Avro Schema type
      */
-    static Object processValue(final JSONObject jsonNode, final Schema objectSchema, final String objectKey) {
+    public static Object processValue(final JSONObject jsonNode, final Schema objectSchema, final String objectKey) {
         switch (objectSchema.getType()) {
             case INT:
                 return Integer.valueOf(String.valueOf(jsonNode.get(objectKey)));
