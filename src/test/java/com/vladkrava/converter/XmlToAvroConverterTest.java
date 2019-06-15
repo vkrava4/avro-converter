@@ -3,16 +3,21 @@ package com.vladkrava.converter;
 import static org.junit.Assert.assertEquals;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import org.apache.commons.io.IOUtils;
+import org.json.JSONObject;
+import org.json.XML;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.vladkrava.converter.serialization.DataSerializationException;
+import com.vladkrava.converter.test.domain.DummyArrays;
 import com.vladkrava.converter.test.domain.DummyObject;
 import com.vladkrava.converter.test.domain.DummyObjectComplex;
 import com.vladkrava.converter.test.domain.DummyObjectPrimitives;
@@ -21,29 +26,29 @@ import com.vladkrava.converter.test.domain.TestEnum;
 
 /**
  * @author Vlad Krava - vkrava4@gmail.com
- * @since 0.1-SNAPSHOT
+ * @since 0.2-SNAPSHOT
  */
-public class JsonToAvroConverterTest {
+public class XmlToAvroConverterTest {
     private static final String TEST_ENCODING = "UTF-8";
 
-    private static final String EXPECTED_DUMMY_FILE_NAME = "json/given-dummy.json";
-    private static final String EXPECTED_DUMMY_PRIMITIVES_FILE_NAME = "json/dummy-primitives.json";
-    private static final String EXPECTED_DUMMY_FORMATTED_FILE_NAME = "json/given-formatted-dummy.json";
-    private static final String EXPECTED_DUMMY_COMPLEX_FILE_NAME = "json/dummy-complex.json";
-    private static final String BROKEN_DUMMY_FILE_NAME = "json/broken-dummy.json";
-    private static final String BROKEN_JSON_FILE_NAME = "json/broken.json";
+    private static final String DUMMY_FILE_NAME = "xml/given-dummy.xml";
+    private static final String DUMMY_PRIMITIVES_FILE_NAME = "xml/dummy-primitives.xml";
+    private static final String DUMMY_COMPLEX_FILE_NAME = "xml/dummy-complex.xml";
+    private static final String DUMMY_FORMATTED_FILE_NAME = "xml/given-formatted-dummy.xml";
+    private static final String BROKEN_DUMMY_FILE_NAME = "xml/broken-dummy.xml";
+    private static final String BROKEN_XML_FILE_NAME = "xml/broken.xml";
 
-//    DUMMY
+    //    DUMMY
     private DummyObject expectedDummyObject;
-    private JsonToAvroConverter<DummyObject> jsonToAvro;
+    private XmlToAvroConverter<DummyObject> xmlToDummyAvro;
 
-//    PRIMITIVES
-    private DummyObjectPrimitives expectedDummyObjectPrimitives;
-    private JsonToAvroConverter<DummyObjectPrimitives> jsonToAvroPrimitives;
+    //    PRIMITIVES
+    private DummyObjectPrimitives expectedDummyPrimitivesObject;
+    private XmlToAvroConverter<DummyObjectPrimitives> xmlToDummyPrimitivesAvro;
 
-//    COMPLEX
+    //    COMPLEX
     private DummyObjectComplex expectedDummyComplexObject;
-    private JsonToAvroConverter<DummyObjectComplex> jsonToAvroComplex;
+    private XmlToAvroConverter<DummyObjectComplex> xmlToDummyComplexAvro;
 
 
     @Before
@@ -56,69 +61,67 @@ public class JsonToAvroConverterTest {
 
     @Test
     public void convertDummyTest() throws Exception {
-        final String givenJson = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
-                .getResourceAsStream(EXPECTED_DUMMY_FILE_NAME)), TEST_ENCODING);
+        final String givenXml = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
+                .getResourceAsStream(DUMMY_FILE_NAME)), TEST_ENCODING);
 
-        assertEquals(this.expectedDummyObject, jsonToAvro.convert(givenJson, DummyObject.class));
+        assertEquals(this.expectedDummyObject, xmlToDummyAvro.convert(givenXml, DummyObject.class));
     }
 
-
     @Test
-    public void convertDummyPrimitivesTest() throws Exception {
-        final String givenJson = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
-                .getResourceAsStream(EXPECTED_DUMMY_PRIMITIVES_FILE_NAME)), TEST_ENCODING);
+    public void convertPrimitivesRecordTest() throws Exception {
+        final String givenXml = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
+                .getResourceAsStream(DUMMY_PRIMITIVES_FILE_NAME)), TEST_ENCODING);
 
-        assertEquals(this.expectedDummyObjectPrimitives, jsonToAvroPrimitives.convert(givenJson, DummyObjectPrimitives.class));
+        assertEquals(this.expectedDummyPrimitivesObject, xmlToDummyPrimitivesAvro.convert(givenXml, DummyObjectPrimitives.class));
     }
 
 
     @Test
     public void convertFormattedDummyTest() throws Exception {
-        final String givenJson = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
-                .getResourceAsStream(EXPECTED_DUMMY_FORMATTED_FILE_NAME)), TEST_ENCODING);
+        final String givenXml = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
+                .getResourceAsStream(DUMMY_FORMATTED_FILE_NAME)), TEST_ENCODING);
 
-        assertEquals(this.expectedDummyObject, jsonToAvro.convert(givenJson, DummyObject.class));
+        assertEquals(this.expectedDummyObject, xmlToDummyAvro.convert(givenXml, DummyObject.class));
     }
 
     @Test
     public void convertComplexDummyTest() throws Exception {
-        final String givenJson = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
-                .getResourceAsStream(EXPECTED_DUMMY_COMPLEX_FILE_NAME)), TEST_ENCODING);
+        final String givenXml = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
+                .getResourceAsStream(DUMMY_COMPLEX_FILE_NAME)), TEST_ENCODING);
 
-        assertEquals(this.expectedDummyComplexObject, jsonToAvroComplex.convert(givenJson, DummyObjectComplex.class));
+        assertEquals(this.expectedDummyComplexObject, xmlToDummyComplexAvro.convert(givenXml, DummyObjectComplex.class));
     }
 
 
     @Test(expected = DataSerializationException.class)
     public void convertBrokenDummyTest() throws Exception {
-        final String givenJson = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
+        final String givenXml = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
                 .getResourceAsStream(BROKEN_DUMMY_FILE_NAME)), TEST_ENCODING);
 
-        assertEquals(this.expectedDummyObject, jsonToAvro.convert(givenJson, DummyObject.class));
+        assertEquals(this.expectedDummyObject, xmlToDummyAvro.convert(givenXml, DummyObject.class));
     }
 
     @Test(expected = DataSerializationException.class)
     public void convertBrokenJsonTest() throws Exception {
-        final String givenJson = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
-                .getResourceAsStream(BROKEN_JSON_FILE_NAME)), TEST_ENCODING);
+        final String givenXml = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader()
+                .getResourceAsStream(BROKEN_XML_FILE_NAME)), TEST_ENCODING);
 
-        assertEquals(this.expectedDummyObject, jsonToAvro.convert(givenJson, DummyObject.class));
+        assertEquals(this.expectedDummyObject, xmlToDummyAvro.convert(givenXml, DummyObject.class));
     }
 
     private void setupDummyTestData() {
-        this.jsonToAvro = new JsonToAvroConverter<>();
+        this.xmlToDummyAvro = new XmlToAvroConverter<>();
         this.expectedDummyObject = DummyObject.newBuilder()
                 .setTestInt(1)
                 .setTestString1("TEST_STRING")
                 .setTestString2("TEST_STRING_2")
                 .setTestArray(Arrays.asList("1", "2", "3"))
                 .build();
-
     }
 
     private void setupDummyPrimitivesTestData() {
-        this.jsonToAvroPrimitives = new JsonToAvroConverter<>();
-        this.expectedDummyObjectPrimitives = DummyObjectPrimitives.newBuilder()
+        this.xmlToDummyPrimitivesAvro = new XmlToAvroConverter<>();
+        this.expectedDummyPrimitivesObject = DummyObjectPrimitives.newBuilder()
                 .setTestInt(1)
                 .setTestDouble(2d)
                 .setTestFloat(3f)
@@ -129,12 +132,13 @@ public class JsonToAvroConverterTest {
                 .build();
     }
 
+
     private void setupDummyComplexTestData() {
         final Map<String, Float> testMap = new LinkedHashMap<>();
         testMap.put("TEST_MAP_VALUE1", 99.99f);
         testMap.put("TEST_MAP_VALUE2", 299.99f);
 
-        this.jsonToAvroComplex = new JsonToAvroConverter<>();
+        this.xmlToDummyComplexAvro = new XmlToAvroConverter<>();
         final DummyObjectPrimitives.Builder primitivesBuilder = DummyObjectPrimitives.newBuilder()
                 .setTestInt(1)
                 .setTestDouble(2d)
@@ -150,6 +154,8 @@ public class JsonToAvroConverterTest {
                 .setTestList(Arrays.asList(InnerClass.newBuilder().setTestId(10L).setTestName("TEST_STRING_INNER_CLASS_1").build(),
                         InnerClass.newBuilder().setTestId(20L).setTestName("TEST_STRING_INNER_CLASS_2").build()))
                 .setTestMap(testMap)
-                .setTestPrimitivesBuilder(primitivesBuilder).build();
+                .setTestPrimitivesBuilder(primitivesBuilder)
+                .setTestUnion(666.66d)
+                .build();
     }
 }
