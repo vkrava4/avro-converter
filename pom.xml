@@ -51,7 +51,7 @@
         <target.jdk.version>1.8</target.jdk.version>
         <nexus.staging.version>1.6.7</nexus.staging.version>
         <maven.source.version>2.2.1</maven.source.version>
-        <maven.javadoc.version>3.0.0</maven.javadoc.version>
+        <maven.javadoc.version>3.1.1</maven.javadoc.version>
         <maven.gpg.version>1.5</maven.gpg.version>
     </properties>
 
