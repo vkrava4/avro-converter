@@ -39,7 +39,7 @@
 
     <properties>
         <!--Dependency-->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <avro.version>1.8.2</avro.version>
         <json.version>20180813</json.version>
         <commons.oi.version>2.4</commons.oi.version>
