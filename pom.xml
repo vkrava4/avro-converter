@@ -42,7 +42,7 @@
         <junit.version>4.12</junit.version>
         <avro.version>1.8.2</avro.version>
         <json.version>20180813</json.version>
-        <commons.oi.version>2.4</commons.oi.version>
+        <commons.oi.version>2.7</commons.oi.version>
         <spring.mvc.version>3.0.2.RELEASE</spring.mvc.version>
 
         <!--Plugins-->
