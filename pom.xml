@@ -43,7 +43,7 @@
         <avro.version>1.8.2</avro.version>
         <json.version>20180813</json.version>
         <commons.oi.version>2.4</commons.oi.version>
-        <spring.mvc.version>3.0.2.RELEASE</spring.mvc.version>
+        <spring.mvc.version>6.0.0</spring.mvc.version>
 
         <!--Plugins-->
         <maven.compiler.version>3.7.0</maven.compiler.version>
